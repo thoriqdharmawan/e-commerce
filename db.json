@@ -1,0 +1,66 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "Data Baru",
+      "author": "thoriq"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "email": "coba@email.com",
+      "password": "$2a$10$3W5XNbHM0fvxXfv4zJeCa.aTzf.CwLuXM9dn.EJQskaugTvzmllCC",
+      "first_name": "coba",
+      "last_name": "coba",
+      "password_confirm": "123456",
+      "country": "Indonesia",
+      "province": "West Java",
+      "city": "Cilacap",
+      "postal_code": "53252",
+      "agree": true,
+      "id": "WIzGa0b"
+    },
+    {
+      "email": "coba2@email.com",
+      "password": "$2a$10$lmw7taQK9V18hklXTlD1JODjKH47PNeGF8.dqr/hYljwfc4UUwFTi",
+      "first_name": "coba2",
+      "last_name": "coba2",
+      "password_confirm": "123456",
+      "country": "Indonesia",
+      "province": "West Java",
+      "city": "Cilacap",
+      "postal_code": "53252",
+      "agree": true,
+      "id": "wjaoUxu"
+    },
+    {
+      "email": "coba3@email.com",
+      "password": "$2a$10$5wbRH.BSUDDUUHyejw02BeDyFyLzBDX87y/vQiZinE2L4zRHwJrHO",
+      "first_name": "coba3",
+      "last_name": "cobake3",
+      "password_confirm": "123456",
+      "country": "Indonesia",
+      "province": "West Java",
+      "city": "Cilacap",
+      "postal_code": "53252",
+      "agree": true,
+      "timestamp": 1579181605,
+      "id": "iB1a-P9"
+    }
+  ]
+}
