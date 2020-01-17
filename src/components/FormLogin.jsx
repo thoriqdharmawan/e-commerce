@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Router
 import { Link, useHistory } from "react-router-dom";
@@ -20,15 +20,16 @@ const FormLogin = params => {
     });
   };
 
-  let history = useHistory();
   const handleSubmit = async e => {
     e.preventDefault();
     params.loginUser(userData);
-
-    return (await params.user.authenticated)
-      ? history.push("/")
-      : history.push("/login");
   };
+
+  let history = useHistory();
+  useEffect(() => {
+    if (params.user.authenticated || localStorage.FBIdToken != null)
+      history.push("/");
+  });
 
   return (
     <div className="card-body">

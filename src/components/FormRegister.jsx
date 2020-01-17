@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const FormRegister = () => {
+// Router
+import { useHistory } from "react-router-dom";
+
+// Redux
+import { connect } from "react-redux";
+import { userRegister } from "../redux/actions/userActions";
+
+const FormRegister = params => {
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -30,18 +37,16 @@ const FormRegister = () => {
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-
-    await axios
-      .post("/register", user)
-      .then(response => {
-        console.log("res :", response);
-      })
-      .catch(error => {
-        console.log("err :", error.response);
-      });
+    params.userRegister(user);
   };
+
+  let history = useHistory();
+  useEffect(() => {
+    if (params.user.authenticated || localStorage.FBIdToken != null)
+      history.push("/");
+  });
 
   return (
     <div className="card card-primary">
@@ -194,4 +199,12 @@ const FormRegister = () => {
   );
 };
 
-export default FormRegister;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapActionToProps = {
+  userRegister
+};
+
+export default connect(mapStateToProps, mapActionToProps)(FormRegister);

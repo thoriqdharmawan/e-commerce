@@ -20,8 +20,12 @@ export default function(state = initialState, action) {
         authenticated: true
       };
     case SET_UNAUTHENTICATED:
-      return initialState;
+      return {
+        ...state,
+        authenticated: false
+      };
     case SET_USER:
+      // console.log(action);
       return {
         authenticated: true,
         loading: false,

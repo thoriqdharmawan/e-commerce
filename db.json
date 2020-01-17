@@ -61,6 +61,20 @@
       "agree": true,
       "timestamp": 1579181605,
       "id": "iB1a-P9"
+    },
+    {
+      "email": "baru@email.com",
+      "password": "$2a$10$haMsSpQdpbpU1LBh.wgTZO4u6Yc00xnQLrpn6QFZOdyG94mYzK7kK",
+      "first_name": "baru",
+      "last_name": "new",
+      "password_confirm": "123456",
+      "country": "Indonesia",
+      "province": "West Java",
+      "city": "Cilacap",
+      "postal_code": "53252",
+      "agree": true,
+      "timestamp": 1579261817,
+      "id": "FTl-uJv"
     }
   ]
 }

@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+// Router
+import { useHistory } from "react-router-dom";
 
 // Component
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 
-const Dashbord = () => {
+// Redux
+import { connect } from "react-redux";
+
+const Dashbord = params => {
+  let history = useHistory();
+  useEffect(() => {
+    if (localStorage.FBIdToken == null) history.push("/login");
+  });
+
   return (
     <div id="app">
-      <div class="main-wrapper">
-        <div class="navbar-bg"></div>
+      <div className="main-wrapper">
+        <div className="navbar-bg"></div>
         <Navbar />
         <Sidebar />
         <MainContent />
@@ -18,4 +29,10 @@ const Dashbord = () => {
   );
 };
 
-export default Dashbord;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapActionToProps = {};
+
+export default connect(mapStateToProps, mapActionToProps)(Dashbord);
