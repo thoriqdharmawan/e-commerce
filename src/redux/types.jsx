@@ -11,7 +11,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const LOADING_DATA = "LOADING_DATA";
 
 // Data reducer type
-export const SET_SCREAMS = "SET_SCREAMS";
-export const SET_SCREAM = "SET_SCREAM";
-export const DELETE_SCREAM = "DELETE_SCREAM";
-export const POST_SCREAM = "POST_SCREAM";
+export const SET_POSTS = "SET_POSTS";
+export const SET_POST = "SET_POST";
+export const DELETE_POST = "DELETE_POST";
+export const POST_POST = "POST_POST";

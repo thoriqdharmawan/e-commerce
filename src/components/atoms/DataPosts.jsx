@@ -1,9 +1,17 @@
 import React from "react";
 
-const DataPosts = ({ title, author, createdAt, status }) => {
+const DataPosts = ({
+  title,
+  author,
+  body,
+  slug,
+  category,
+  createdAt,
+  editedAt
+}) => {
   return (
     <tr>
-      <td>
+      <td className="center" id="table-data">
         <div class="custom-checkbox custom-control">
           <input
             type="checkbox"
@@ -16,7 +24,7 @@ const DataPosts = ({ title, author, createdAt, status }) => {
           </label>
         </div>
       </td>
-      <td>
+      <td id="table-data">
         {title}
         <div class="table-links">
           <a href="#">View</a>
@@ -28,24 +36,23 @@ const DataPosts = ({ title, author, createdAt, status }) => {
           </a>
         </div>
       </td>
-      <td>
-        <a href="#">Web Developer</a>,<a href="#">Tutorial</a>
+      <td id="table-data" className="center">
+        {body}
       </td>
-      <td>
-        <a href="#">
-          <img
-            alt="gb"
-            class="rounded-circle"
-            width="35"
-            data-toggle="title"
-            title=""
-          />{" "}
-          <div class="d-inline-block ml-1">{author}</div>
-        </a>
+      <td id="table-data" className="center">
+        {author}
       </td>
-      <td>{createdAt}</td>
-      <td>
-        <div class="badge badge-primary">{status}</div>
+      <td id="table-data" className="center">
+        {slug}
+      </td>
+      <td id="table-data" className="center">
+        {category}
+      </td>
+      <td id="table-data" className="center">
+        {createdAt}
+      </td>
+      <td id="table-data" className="center">
+        {editedAt}
       </td>
     </tr>
   );

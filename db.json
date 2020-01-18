@@ -1,14 +1,44 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id": 1579331566377,
+      "title": "ini postingan baru",
+      "body": "body contoh gan",
+      "author": "coba3 cobake3",
+      "slug": "ini-postingan-baru",
+      "category_name": "News",
+      "created_at": "Sat Jan 18 2020 14:12:46 GMT+0700 (Western Indonesia Time)",
+      "updated_at": ""
     },
     {
-      "id": 2,
-      "title": "Data Baru",
-      "author": "thoriq"
+      "id": 1579331620133,
+      "title": "contoh ke dua",
+      "body": "asda asd as",
+      "author": "coba3 cobake3",
+      "slug": "contoh-ke-dua",
+      "category_name": "Political",
+      "created_at": "Sat Jan 18 2020 14:13:40 GMT+0700 (Western Indonesia Time)",
+      "updated_at": ""
+    },
+    {
+      "id": 1579331913243,
+      "title": "test ke tiga gan",
+      "body": "asdasrqwf ",
+      "author": "coba3 cobake3",
+      "slug": "test-ke-tiga-gan",
+      "category_name": "Tech",
+      "created_at": "Sat Jan 18 2020 14:18:33 GMT+0700 (Western Indonesia Time)",
+      "updated_at": ""
+    },
+    {
+      "id": 1579332301893,
+      "title": "postingan ke 4",
+      "body": "asd sada",
+      "author": "coba3 cobake3",
+      "slug": "postingan-ke-4",
+      "category_name": "Tech",
+      "created_at": "Sat Jan 18 2020 14:25:01 GMT+0700 (Western Indonesia Time)",
+      "updated_at": ""
     }
   ],
   "comments": [

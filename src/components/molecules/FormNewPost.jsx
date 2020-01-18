@@ -2,69 +2,87 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+// Router
+import { useHistory } from "react-router-dom";
+
+// Redux
+import { connect } from "react-redux";
+import { postPostData } from "../../redux/actions/dataActions";
+
 const PostSchema = Yup.object().shape({
   title: Yup.string()
     .min(2, "Too Short!")
-    .max(10, "Too Long!")
+    .max(25, "Too Long!")
     .required("Required"),
-  category: Yup.string().required("Required"),
-  content: Yup.string()
+  category_name: Yup.string().required("Required"),
+  body: Yup.string()
     .min(5, "Too Short!")
     .max(20, "Too Long!")
-    .required("Required"),
-  image: Yup.string().required("Required"),
-  tags: Yup.string()
-    .min(1, "Too Short!")
-    .max(10, "Too Long!")
-    .required("Required"),
-  status: Yup.string().required("Required")
+    .required("Required")
 });
 
-const FormNewPost = () => {
+const FormNewPost = params => {
+  const { first_name, last_name } = params.user.credentials[0];
   const [postValue, setPostValue] = useState({});
 
+  let history = useHistory();
   useEffect(() => {
-    // console.log("ini state : ", postValue);
+    console.log("ini state : ", postValue);
   });
 
   return (
     <Formik
       initialValues={{
+        id: new Date().getTime(),
         title: "",
-        category: "Tech",
-        content: "",
-        image: "",
-        tags: "",
-        status: "Publish"
+        body: "",
+        author: `${first_name} ${last_name}`,
+        slug: "",
+        category_name: "Tech",
+        created_at: `${new Date()}`,
+        updated_at: ""
       }}
       validationSchema={PostSchema}
       onSubmit={values => {
-        console.log("form : ", values);
+        // let slug = new Object()
+        let newSlug = values.title
+          .toString()
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^\w\-]+/g, "")
+          .replace(/\-\-+/g, "-")
+          .replace(/^-+/, "")
+          .replace(/-+$/, "");
+        values.slug = newSlug;
+        console.log("values akhir : ", values);
         setPostValue(values);
+        params.postPost(values);
+        history.push("/");
       }}
     >
       {({ errors, touched }) => (
         <Form>
-          <div class="card-body">
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+          <div className="card-body">
+            <div className="form-group row mb-4">
+              <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                 Title
               </label>
-              <div class="col-sm-12 col-md-7">
-                <Field name="title" type="text" class="form-control" />
+              <div className="col-sm-12 col-md-7">
+                <Field name="title" type="text" className="form-control" />
                 <small>
                   <ErrorMessage name="title" />
                 </small>
               </div>
             </div>
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+
+            <div className="form-group row mb-4">
+              <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
                 Category
               </label>
-              <div class="col-sm-12 col-md-7">
+              <div className="col-sm-12 col-md-7">
                 <Field
                   component="select"
-                  name="category"
+                  name="category_name"
                   className="form-control selectric"
                 >
                   <option value="Tech">Tech</option>
@@ -76,67 +94,21 @@ const FormNewPost = () => {
                 </small>
               </div>
             </div>
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                Content
+            <div className="form-group row mb-4">
+              <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                Body
               </label>
-              <div class="col-sm-12 col-md-7">
-                <Field name="content" as="textarea" className="form-input" />
+              <div className="col-sm-12 col-md-7">
+                <Field name="body" as="textarea" className="form-input" />
               </div>
               <small>
                 <ErrorMessage name="content" />
               </small>
             </div>
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                Thumbnail
-              </label>
-              <div class="col-sm-12 col-md-7">
-                <div id="image-preview" class="image-preview">
-                  <label for="image-upload" id="image-label">
-                    Choose File
-                  </label>
-                  <Field type="file" name="image" id="image-upload" />
-                  <small>
-                    <ErrorMessage name="image" />
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                Tags
-              </label>
-              <div class="col-sm-12 col-md-7">
-                <Field name="tags" type="text" class="form-control inputtags" />
-                <small>
-                  <ErrorMessage name="tags" />
-                </small>
-              </div>
-            </div>
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                Status
-              </label>
-              <div class="col-sm-12 col-md-7">
-                <Field
-                  component="select"
-                  name="status"
-                  className="form-control selectric"
-                >
-                  <option value="Publish">Publish</option>
-                  <option value="Draft">Draft</option>
-                  <option value="Pending">Pending</option>
-                </Field>
-                <small>
-                  <ErrorMessage name="status" />
-                </small>
-              </div>
-            </div>
-            <div class="form-group row mb-4">
-              <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
-              <div class="col-sm-12 col-md-7">
-                <button type="submit" class="btn btn-primary">
+            <div className="form-group row mb-4">
+              <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+              <div className="col-sm-12 col-md-7">
+                <button type="submit" className="btn btn-primary">
                   Create Post
                 </button>
               </div>
@@ -148,4 +120,12 @@ const FormNewPost = () => {
   );
 };
 
-export default FormNewPost;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapActionToProps = {
+  postPostData
+};
+
+export default connect(mapStateToProps, mapActionToProps)(FormNewPost);

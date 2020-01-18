@@ -5,11 +5,14 @@ import {
   LOADING_USER
 } from "../types";
 
+let text = localStorage.getItem("dataUser");
+let obj2 = JSON.parse(text);
+let cred = obj2;
+
 const initialState = {
   authenticated: false,
   loading: false,
-  credentials: {},
-  notifications: []
+  credentials: cred
 };
 
 export default function(state = initialState, action) {
@@ -22,14 +25,14 @@ export default function(state = initialState, action) {
     case SET_UNAUTHENTICATED:
       return {
         ...state,
-        authenticated: false
+        authenticated: false,
+        credentials: null
       };
     case SET_USER:
-      // console.log(action);
       return {
-        authenticated: true,
+        ...state,
         loading: false,
-        ...action.payload
+        credentials: [{ ...action.payload }]
       };
     case LOADING_USER:
       return {

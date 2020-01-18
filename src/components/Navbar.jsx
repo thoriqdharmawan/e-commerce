@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import profil from "../assets/img/avatar/avatar-1.png";
+
+// Redux
+import { connect } from "react-redux";
+import { getUserData } from "../redux/actions/userActions";
 
 // Router
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = params => {
   return (
     <nav className="navbar navbar-expand-lg main-navbar">
       <form className="form-inline mr-auto">
@@ -48,7 +52,9 @@ const Navbar = () => {
             className="nav-link dropdown-toggle nav-link-lg nav-link-user"
           >
             <img alt="profil" src={profil} className="rounded-circle mr-1" />
-            <div className="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+            <div className="d-sm-none d-lg-inline-block">
+              {`Hi, ${params.user.credentials[0].first_name} ${params.user.credentials[0].last_name}`}
+            </div>
           </Link>
 
           <div className="dropdown-menu dropdown-menu-right">
@@ -67,4 +73,12 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapActionToProps = {
+  getUserData
+};
+
+export default connect(mapStateToProps, mapActionToProps)(Navbar);
